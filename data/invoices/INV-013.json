@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-013",
+  "supplier": "Nordisk Konsult AB",
+  "contract_id": "C-2024-001",
+  "issue_date": "2025-04-18",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Purchase of 3 laptops for the project team",
+      "quantity": 3,
+      "unit": "units",
+      "unit_price": 9400.0,
+      "line_total": 28200.0
+    }
+  ],
+  "invoice_total": 28200.0
+}

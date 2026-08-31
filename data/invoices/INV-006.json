@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-006",
+  "supplier": "Björkdal Städservice AB",
+  "contract_id": "C-2024-002",
+  "issue_date": "2025-04-11",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Window cleaning, interior and exterior surfaces",
+      "quantity": 4,
+      "unit": "occasions",
+      "unit_price": 1250.0,
+      "line_total": 6250.0
+    }
+  ],
+  "invoice_total": 6250.0
+}

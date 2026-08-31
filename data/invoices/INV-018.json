@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-018",
+  "supplier": "Sundberg IT-Drift AB",
+  "contract_id": "C-2024-005",
+  "issue_date": "2025-04-16",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "One-off migration project fee, new platform",
+      "quantity": 1,
+      "unit": "project",
+      "unit_price": 145000.0,
+      "line_total": 145000.0
+    }
+  ],
+  "invoice_total": 145000.0
+}

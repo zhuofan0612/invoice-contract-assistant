@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-005",
+  "supplier": "Sundberg IT-Drift AB",
+  "contract_id": "C-2024-005",
+  "issue_date": "2025-04-02",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Managed client operations & support, 120 endpoints",
+      "quantity": 120,
+      "unit": "devices",
+      "unit_price": 175.0,
+      "line_total": 24000.0
+    }
+  ],
+  "invoice_total": 24000.0
+}

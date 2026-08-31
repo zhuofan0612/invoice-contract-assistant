@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-016",
+  "supplier": "Trelleborg Säkerhet AB",
+  "contract_id": "C-2024-008",
+  "issue_date": "2025-04-12",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Security assignment, Radhuset site - perimeter protection review",
+      "quantity": 60,
+      "unit": "hours",
+      "unit_price": 1180.0,
+      "line_total": 70800.0
+    }
+  ],
+  "invoice_total": 70800.0
+}

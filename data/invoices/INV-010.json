@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-010",
+  "supplier": "Kvarnholmen Livsmedel AB",
+  "contract_id": "C-2024-007",
+  "issue_date": "2025-04-01",
+  "period": "2025-W13",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "School lunch portions incl. special diets",
+      "quantity": 3000,
+      "unit": "portions",
+      "unit_price": 74.0,
+      "line_total": 222000.0
+    }
+  ],
+  "invoice_total": 222000.0
+}

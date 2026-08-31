@@ -1,0 +1,52 @@
+# Brings up the "real" profile: Postgres with pgvector instead of SQLite, so
+# the row-level security policies are actually exercised rather than described.
+#
+# Without this, `make run` uses SQLite and the same group filter is applied as
+# a SQL predicate -- correct, but only one layer. Here the database enforces it
+# independently, which is the arrangement worth showing.
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: invoice
+      POSTGRES_PASSWORD: invoice
+      POSTGRES_DB: invoice_check
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Applied on first start: creates the vector extension, the indexes and
+      # the RLS policy.
+      - ./app/store/schema_pg.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U invoice -d invoice_check"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      args:
+        PROFILE: ${PROFILE:-slim}
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://invoice:invoice@db:5432/invoice_check
+      # Passed through if set on the host; absent, the stub client runs and
+      # the service still answers.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      TRACE_PATH: /app/var/traces.jsonl
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./var:/app/var
+    # Index the contracts before serving. Idempotent, so restarts are safe.
+    command: >
+      sh -c "python -c 'from app.ingest.pipeline import ingest; print(ingest())'
+      && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+volumes:
+  pgdata:

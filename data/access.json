@@ -1,0 +1,68 @@
+[
+  {
+    "contract_id": "C-2024-001",
+    "department": "IT",
+    "allowed_groups": [
+      "procurement",
+      "it-dept"
+    ]
+  },
+  {
+    "contract_id": "C-2024-002",
+    "department": "Facilities",
+    "allowed_groups": [
+      "procurement",
+      "facilities"
+    ]
+  },
+  {
+    "contract_id": "C-2024-003",
+    "department": "Facilities",
+    "allowed_groups": [
+      "procurement",
+      "facilities",
+      "property-mgmt"
+    ]
+  },
+  {
+    "contract_id": "C-2024-004",
+    "department": "Urban Development",
+    "allowed_groups": [
+      "procurement",
+      "urban-dev"
+    ]
+  },
+  {
+    "contract_id": "C-2024-005",
+    "department": "IT",
+    "allowed_groups": [
+      "procurement",
+      "it-dept"
+    ]
+  },
+  {
+    "contract_id": "C-2024-006",
+    "department": "Education",
+    "allowed_groups": [
+      "procurement",
+      "education"
+    ]
+  },
+  {
+    "contract_id": "C-2024-007",
+    "department": "Education",
+    "allowed_groups": [
+      "procurement",
+      "education",
+      "school-catering"
+    ]
+  },
+  {
+    "contract_id": "C-2024-008",
+    "department": "Security",
+    "allowed_groups": [
+      "procurement",
+      "security-dept"
+    ]
+  }
+]

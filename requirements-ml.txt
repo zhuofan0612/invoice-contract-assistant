@@ -1,0 +1,5 @@
+# Real embeddings and reranking. Without these the hashing embedder and the
+# BM25 lexical reranker are used instead: far weaker semantically, but they
+# keep the two-stage retrieval shape so the code path is identical.
+sentence-transformers>=2.7
+torch>=2.2

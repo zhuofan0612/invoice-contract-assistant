@@ -1,0 +1,206 @@
+[
+  {
+    "invoice_id": "INV-001",
+    "supplier": "Nordisk Konsult AB",
+    "contract_id": "C-2024-001",
+    "category": "clean_match",
+    "expected_decision": "match",
+    "governing_clause_id": "C-2024-001-§4.2",
+    "discrepancy": "",
+    "ambiguous_clause_candidates": [],
+    "notes": "Rate, quantity and arithmetic all agree with the contract."
+  },
+  {
+    "invoice_id": "INV-002",
+    "supplier": "Björkdal Städservice AB",
+    "contract_id": "C-2024-002",
+    "category": "clean_match",
+    "expected_decision": "match",
+    "governing_clause_id": "C-2024-002-§3.1",
+    "discrepancy": "",
+    "ambiguous_clause_candidates": [],
+    "notes": "18 occasions is within the 22/month ceiling."
+  },
+  {
+    "invoice_id": "INV-003",
+    "supplier": "Vasaberg Teknik AB",
+    "contract_id": "C-2024-003",
+    "category": "clean_match",
+    "expected_decision": "match",
+    "governing_clause_id": "C-2024-003-§4.1",
+    "discrepancy": "",
+    "ambiguous_clause_candidates": [],
+    "notes": "Technician rate read from the rate table; within the 120h ceiling."
+  },
+  {
+    "invoice_id": "INV-004",
+    "supplier": "Kvarnholmen Livsmedel AB",
+    "contract_id": "C-2024-007",
+    "category": "clean_match",
+    "expected_decision": "match",
+    "governing_clause_id": "C-2024-007-§3.1",
+    "discrepancy": "",
+    "ambiguous_clause_candidates": [],
+    "notes": "3 850 portions is within the 4 000/week ceiling."
+  },
+  {
+    "invoice_id": "INV-005",
+    "supplier": "Sundberg IT-Drift AB",
+    "contract_id": "C-2024-005",
+    "category": "overbilling_wrong_total",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-005-§4.1",
+    "discrepancy": "Line total stated as 24 000 SEK; 120 devices x 175 SEK = 21 000 SEK. Overstated by 3 000 SEK.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Correct tier (51-200) and correct unit price; the multiplication is wrong."
+  },
+  {
+    "invoice_id": "INV-006",
+    "supplier": "Björkdal Städservice AB",
+    "contract_id": "C-2024-002",
+    "category": "overbilling_wrong_total",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-002-§3.2",
+    "discrepancy": "Line total stated as 6 250 SEK; 4 occasions x 1 250 SEK = 5 000 SEK. Overstated by 1 250 SEK.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Looks like a fifth occasion was priced in but only four were performed."
+  },
+  {
+    "invoice_id": "INV-007",
+    "supplier": "Almgren Utbildning HB",
+    "contract_id": "C-2024-006",
+    "category": "overbilling_wrong_total",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-006-§4.1",
+    "discrepancy": "Line total stated as 82 500 SEK; 6 days x 12 500 SEK = 75 000 SEK. Overstated by 7 500 SEK.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Contract is the scanned/OCR case, so this also exercises the OCR ingestion path."
+  },
+  {
+    "invoice_id": "INV-008",
+    "supplier": "Nordisk Konsult AB",
+    "contract_id": "C-2024-001",
+    "category": "wrong_rate",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-001-§4.2",
+    "discrepancy": "Billed 1 350 SEK/h; contract implementation rate under §4.2 is 1 150 SEK/h.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Arithmetic is internally consistent, so only a rate comparison catches this."
+  },
+  {
+    "invoice_id": "INV-009",
+    "supplier": "Vasaberg Teknik AB",
+    "contract_id": "C-2024-003",
+    "category": "wrong_rate",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-003-§4.1",
+    "discrepancy": "Billed 985 SEK/h; the rate table gives 895 SEK/h for senior technician.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Requires reading the correct row out of a Markdown table."
+  },
+  {
+    "invoice_id": "INV-010",
+    "supplier": "Kvarnholmen Livsmedel AB",
+    "contract_id": "C-2024-007",
+    "category": "wrong_rate",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-007-§3.1",
+    "discrepancy": "Billed 74.00 SEK/portion; contract price is 68.50 SEK/portion.",
+    "ambiguous_clause_candidates": [],
+    "notes": "§3.2 forbids a surcharge for special diets, which is the likely excuse for the uplift."
+  },
+  {
+    "invoice_id": "INV-011",
+    "supplier": "Nordisk Konsult AB",
+    "contract_id": "C-2024-001",
+    "category": "unauthorized_quantity",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-001-§5.1",
+    "discrepancy": "195 hours invoiced; §5.1 caps call-offs at 160 hours per calendar month.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Correct rate and correct arithmetic; only the ceiling is breached."
+  },
+  {
+    "invoice_id": "INV-012",
+    "supplier": "Björkdal Städservice AB",
+    "contract_id": "C-2024-002",
+    "category": "unauthorized_quantity",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-002-§5.1",
+    "discrepancy": "28 cleaning occasions invoiced; §5.1 allows a maximum of 22 per calendar month.",
+    "ambiguous_clause_candidates": [],
+    "notes": "No written call-off for the additional occasions is referenced on the invoice."
+  },
+  {
+    "invoice_id": "INV-013",
+    "supplier": "Nordisk Konsult AB",
+    "contract_id": "C-2024-001",
+    "category": "item_not_in_contract",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-001-§3.2",
+    "discrepancy": "Hardware purchase invoiced; §3.2 expressly excludes supply of computers and equipment.",
+    "ambiguous_clause_candidates": [],
+    "notes": "The system should cite the exclusion clause, not merely fail to find a rate."
+  },
+  {
+    "invoice_id": "INV-014",
+    "supplier": "Björkdal Städservice AB",
+    "contract_id": "C-2024-002",
+    "category": "item_not_in_contract",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-002-§3.3",
+    "discrepancy": "Snow clearance and gritting invoiced; §3.3 places outdoor/seasonal services outside the agreement.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Belongs under the grounds maintenance agreement instead."
+  },
+  {
+    "invoice_id": "INV-015",
+    "supplier": "Nordisk Konsult AB",
+    "contract_id": "C-2024-001",
+    "category": "ambiguous_mapping",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-001-§4.1",
+    "discrepancy": "Description mixes advisory (§4.1, 1 450 SEK/h) with technical support ahead of system replacement (§4.2, 1 150 SEK/h). The 300 SEK/h difference cannot be resolved from the invoice alone.",
+    "ambiguous_clause_candidates": [
+      "C-2024-001-§4.1",
+      "C-2024-001-§4.2"
+    ],
+    "notes": "System must surface both candidate clauses and let a caseworker adjudicate."
+  },
+  {
+    "invoice_id": "INV-016",
+    "supplier": "Trelleborg Säkerhet AB",
+    "contract_id": "C-2024-008",
+    "category": "ambiguous_mapping",
+    "expected_decision": "flag",
+    "governing_clause_id": "C-2024-008-§4.2",
+    "discrepancy": "'Security assignment' suggests manned guarding (§4.1, 520 SEK/h) while 'perimeter protection review' suggests consultancy (§4.2, 1 180 SEK/h). §4.3 requires the call-off to state the split; it is absent.",
+    "ambiguous_clause_candidates": [
+      "C-2024-008-§4.1",
+      "C-2024-008-§4.2"
+    ],
+    "notes": "Ambiguity is worth 39 600 SEK, so guessing is exactly the wrong behaviour."
+  },
+  {
+    "invoice_id": "INV-017",
+    "supplier": "Lindqvist Anläggning AB",
+    "contract_id": "C-2024-004",
+    "category": "no_matching_clause",
+    "expected_decision": "flag",
+    "governing_clause_id": null,
+    "discrepancy": "Contract remunerates drainage on a per-running-metre basis only; it contains no hourly rate for meetings or authority consultation.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Needs human review: no clause governs this line at all."
+  },
+  {
+    "invoice_id": "INV-018",
+    "supplier": "Sundberg IT-Drift AB",
+    "contract_id": "C-2024-005",
+    "category": "no_matching_clause",
+    "expected_decision": "flag",
+    "governing_clause_id": null,
+    "discrepancy": "Contract prices per registered device per month and out-of-hours support per hour; it has no clause for one-off project fees.",
+    "ambiguous_clause_candidates": [],
+    "notes": "Needs human review: a 145 000 SEK charge with no governing clause."
+  }
+]

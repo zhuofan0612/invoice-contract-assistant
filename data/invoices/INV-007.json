@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-007",
+  "supplier": "Almgren Utbildning HB",
+  "contract_id": "C-2024-006",
+  "issue_date": "2025-04-15",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "CPD delivery - digital tools in teaching, training days",
+      "quantity": 6,
+      "unit": "days",
+      "unit_price": 12500.0,
+      "line_total": 82500.0
+    }
+  ],
+  "invoice_total": 82500.0
+}

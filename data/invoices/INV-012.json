@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-012",
+  "supplier": "Björkdal Städservice AB",
+  "contract_id": "C-2024-002",
+  "issue_date": "2025-05-05",
+  "period": "2025-04",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Cleaning visits April, primary school units",
+      "quantity": 28,
+      "unit": "occasions",
+      "unit_price": 485.0,
+      "line_total": 13580.0
+    }
+  ],
+  "invoice_total": 13580.0
+}

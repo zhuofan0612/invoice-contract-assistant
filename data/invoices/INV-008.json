@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-008",
+  "supplier": "Nordisk Konsult AB",
+  "contract_id": "C-2024-001",
+  "issue_date": "2025-04-06",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Config and go-live of procured software",
+      "quantity": 80,
+      "unit": "hours",
+      "unit_price": 1350.0,
+      "line_total": 108000.0
+    }
+  ],
+  "invoice_total": 108000.0
+}

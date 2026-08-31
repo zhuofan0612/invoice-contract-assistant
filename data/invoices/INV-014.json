@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-014",
+  "supplier": "Björkdal Städservice AB",
+  "contract_id": "C-2024-002",
+  "issue_date": "2025-03-08",
+  "period": "2025-02",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Snow clearance and gritting, car park at Ekskolan",
+      "quantity": 6,
+      "unit": "occasions",
+      "unit_price": 1850.0,
+      "line_total": 11100.0
+    }
+  ],
+  "invoice_total": 11100.0
+}

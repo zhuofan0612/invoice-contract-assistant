@@ -1,0 +1,3 @@
+# Live model calls. Without this the stub client runs and the pipeline still
+# works end to end -- slower to be right, but never wrong about being unsure.
+anthropic>=0.39

@@ -1,0 +1,9 @@
+# Runtime dependencies for the default (zero-infrastructure) profile.
+# Everything heavier is optional and lives in the extras files below, because
+# the system selects a fallback implementation when an import is missing.
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.6
+httpx>=0.27
+numpy>=1.26
+pyyaml>=6.0

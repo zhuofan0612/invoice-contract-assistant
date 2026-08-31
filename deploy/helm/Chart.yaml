@@ -1,0 +1,6 @@
+apiVersion: v2
+name: invoice-check
+description: Invoice-contract decision assistant
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

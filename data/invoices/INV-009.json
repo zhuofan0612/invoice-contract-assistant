@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-009",
+  "supplier": "Vasaberg Teknik AB",
+  "contract_id": "C-2024-003",
+  "issue_date": "2025-04-09",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Statutory ventilation inspection (OVK), snr tech",
+      "quantity": 40,
+      "unit": "hours",
+      "unit_price": 985.0,
+      "line_total": 39400.0
+    }
+  ],
+  "invoice_total": 39400.0
+}

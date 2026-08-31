@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-017",
+  "supplier": "Lindqvist Anläggning AB",
+  "contract_id": "C-2024-004",
+  "issue_date": "2025-04-14",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Design meetings and consultation with authorities",
+      "quantity": 12,
+      "unit": "hours",
+      "unit_price": 1100.0,
+      "line_total": 13200.0
+    }
+  ],
+  "invoice_total": 13200.0
+}

@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-003",
+  "supplier": "Vasaberg Teknik AB",
+  "contract_id": "C-2024-003",
+  "issue_date": "2025-04-08",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Preventive maintenance, ventilation plant - technician",
+      "quantity": 64,
+      "unit": "hours",
+      "unit_price": 745.0,
+      "line_total": 47680.0
+    }
+  ],
+  "invoice_total": 47680.0
+}

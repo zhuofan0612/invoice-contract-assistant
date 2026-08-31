@@ -1,0 +1,58 @@
+# Defaults are the cautious ones. Anything that would change the meaning of a
+# decision -- the model, the ambiguity threshold -- is explicit here rather
+# than buried in the image, because those are the settings an auditor asks
+# about after a disputed invoice.
+
+replicaCount: 2
+
+image:
+  repository: ghcr.io/example/invoice-check
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    # No CPU limit on purpose: throttling a request that is mid-LLM-call wastes
+    # the tokens already spent. Memory is capped because a runaway is a bug.
+    memory: 2Gi
+
+config:
+  storeBackend: pgvector
+  embeddingBackend: sbert
+  rerankerBackend: cross-encoder
+  llmBackend: anthropic
+  anthropicModel: claude-sonnet-4-6
+  candidateK: "20"
+  rerankK: "4"
+  # The false-flag/false-match dial. Documented in values.yaml so that changing
+  # it is a reviewed commit rather than a kubectl edit.
+  ambiguityThreshold: "0.75"
+  maxAgentIterations: "6"
+
+# Secrets are referenced, never templated in. The chart expects these to exist
+# already, created by whatever the cluster uses (sealed-secrets, External
+# Secrets, a cloud secret manager).
+secrets:
+  anthropic:
+    secretName: invoice-check-llm
+    key: api-key
+  database:
+    secretName: invoice-check-db
+    key: url
+
+postgresql:
+  # Managed instance by default: a database holding procurement records is not
+  # something to run as a sidecar.
+  enabled: false
+
+ingress:
+  enabled: false
+  className: nginx
+  host: invoice-check.internal

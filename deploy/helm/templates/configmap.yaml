@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  STORE_BACKEND: {{ .Values.config.storeBackend | quote }}
+  EMBEDDING_BACKEND: {{ .Values.config.embeddingBackend | quote }}
+  RERANKER_BACKEND: {{ .Values.config.rerankerBackend | quote }}
+  LLM_BACKEND: {{ .Values.config.llmBackend | quote }}
+  ANTHROPIC_MODEL: {{ .Values.config.anthropicModel | quote }}
+  CANDIDATE_K: {{ .Values.config.candidateK | quote }}
+  RERANK_K: {{ .Values.config.rerankK | quote }}
+  AMBIGUITY_THRESHOLD: {{ .Values.config.ambiguityThreshold | quote }}
+  MAX_AGENT_ITERATIONS: {{ .Values.config.maxAgentIterations | quote }}
+  TRACE_PATH: "/app/var/traces.jsonl"

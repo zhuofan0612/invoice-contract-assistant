@@ -1,0 +1,19 @@
+{
+  "invoice_id": "INV-011",
+  "supplier": "Nordisk Konsult AB",
+  "contract_id": "C-2024-001",
+  "issue_date": "2025-04-04",
+  "period": "2025-03",
+  "currency": "SEK",
+  "line_items": [
+    {
+      "line_no": 1,
+      "description": "Integration work, running hours March",
+      "quantity": 195,
+      "unit": "hours",
+      "unit_price": 1150.0,
+      "line_total": 224250.0
+    }
+  ],
+  "invoice_total": 224250.0
+}
