@@ -47,6 +47,11 @@ class Settings:
     # --- vector store ---
     store_backend: str = "sqlite"
     database_url: str | None = None
+    # Ingestion connects as a different Postgres role to the one that serves
+    # requests: the serving role may only SELECT, and only rows its groups
+    # allow. Falls back to database_url when unset, which is correct for SQLite
+    # and merely undefended for Postgres.
+    ingest_database_url: str | None = None
     sqlite_path: Path = ROOT / "var" / "index.sqlite3"
 
     # --- embeddings / rerank ---
@@ -108,6 +113,7 @@ class Settings:
 @functools.lru_cache(maxsize=1)
 def get_settings() -> Settings:
     database_url = os.getenv("DATABASE_URL") or None
+    ingest_database_url = os.getenv("INGEST_DATABASE_URL") or None
     api_key = os.getenv("ANTHROPIC_API_KEY") or None
 
     store_backend = os.getenv("STORE_BACKEND") or ("pgvector" if database_url else "sqlite")
@@ -126,6 +132,7 @@ def get_settings() -> Settings:
         data_dir=data_dir,
         store_backend=store_backend,
         database_url=database_url,
+        ingest_database_url=ingest_database_url,
         sqlite_path=Path(os.getenv("SQLITE_PATH", str(var_dir / "index.sqlite3"))),
         embedding_backend=embedding_backend,
         embedding_dim=int(os.getenv("EMBEDDING_DIM", "384")),

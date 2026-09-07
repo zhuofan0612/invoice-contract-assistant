@@ -5,3 +5,6 @@ __pycache__/
 .pytest_cache/
 .env
 .ruff_cache/
+
+# Personal study notes, kept local.
+LEARNING.md

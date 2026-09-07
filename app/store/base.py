@@ -69,14 +69,24 @@ class VectorStore(Protocol):
     def clear(self) -> None: ...
 
 
-def get_store(settings=None) -> VectorStore:
+def get_store(settings=None, *, for_ingest: bool = False) -> VectorStore:
+    """Open the store for one of two jobs.
+
+    Serving and indexing are different privileges, so under Postgres they are
+    different login roles: the serving role may only SELECT, and only rows the
+    caller's groups permit. `for_ingest` picks the writing role. SQLite has no
+    roles, so the flag is a no-op there and the file is the boundary instead.
+    """
     from app.config import get_settings
 
     settings = settings or get_settings()
     if settings.store_backend == "pgvector":
         from app.store.pgvector_store import PgVectorStore
 
-        return PgVectorStore(settings.database_url)
+        dsn = settings.database_url
+        if for_ingest:
+            dsn = settings.ingest_database_url or settings.database_url
+        return PgVectorStore(dsn)
 
     from app.store.sqlite_store import SqliteVectorStore
 

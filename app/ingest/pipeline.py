@@ -92,7 +92,7 @@ def ingest(
 ) -> IngestReport:
     settings = settings or get_settings()
     embedder = embedder or get_embedder(settings)
-    store = store or get_store(settings)
+    store = store or get_store(settings, for_ingest=True)
 
     chunks, report = build_chunks(settings)
     if not chunks:

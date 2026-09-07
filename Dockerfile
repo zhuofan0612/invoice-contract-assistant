@@ -8,11 +8,15 @@ COPY requirements.txt .
 # embedding model and PDF/OCR support; the default image runs the fallbacks,
 # which is enough to serve and evaluate the whole pipeline.
 ARG PROFILE=slim
-COPY requirements-llm.txt requirements-ml.txt requirements-pdf.txt ./
+COPY requirements-llm.txt requirements-ml.txt requirements-pdf.txt requirements-pg.txt ./
 
+# psycopg is installed in every profile, not as an extra: this image is what
+# docker-compose runs, and compose always points it at Postgres. Leaving it to
+# the "full" profile means the default build starts, connects to nothing, and
+# fails at the first query.
 RUN python -m venv /opt/venv \
  && /opt/venv/bin/pip install --no-cache-dir -U pip \
- && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt \
+ && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt -r requirements-pg.txt \
  && if [ "$PROFILE" = "full" ]; then \
       /opt/venv/bin/pip install --no-cache-dir \
         -r requirements-llm.txt -r requirements-ml.txt -r requirements-pdf.txt; \

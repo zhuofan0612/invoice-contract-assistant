@@ -34,7 +34,13 @@ services:
       db:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgresql://invoice:invoice@db:5432/invoice_check
+      # Two roles, two jobs. `invoice_app` may only SELECT, and RLS filters
+      # every SELECT by the caller's groups. `invoice_ingest` writes the index
+      # and never serves a request. Connecting as the bootstrap user `invoice`
+      # would disable RLS altogether -- it is a superuser, and superusers
+      # bypass row security regardless of FORCE ROW LEVEL SECURITY.
+      DATABASE_URL: postgresql://invoice_app:invoice_app@db:5432/invoice_check
+      INGEST_DATABASE_URL: postgresql://invoice_ingest:invoice_ingest@db:5432/invoice_check
       # Passed through if set on the host; absent, the stub client runs and
       # the service still answers.
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}

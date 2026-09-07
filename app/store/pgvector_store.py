@@ -43,10 +43,27 @@ class PgVectorStore:
         self._pool = ConnectionPool(dsn, min_size=1, max_size=8, open=True)
 
     def initialise(self, dim: int) -> None:
-        sql = SCHEMA_PATH.read_text(encoding="utf-8")
-        if dim != 384:
-            sql = sql.replace("vector(384)", f"vector({dim})")
+        """Apply the schema, but only if nobody has applied it already.
+
+        In a deployment the schema is applied by a privileged bootstrap step --
+        `docker-entrypoint-initdb.d`, or a migration job -- because the two
+        application roles deliberately hold no DDL rights and cannot run it.
+        Attempting it unconditionally would fail on `ALTER TABLE ... ENABLE ROW
+        LEVEL SECURITY`, which requires ownership.
+
+        It stays here so that a developer pointing at an empty database still
+        gets a working table.
+        """
         with self._pool.connection() as conn:
+            already = conn.execute(
+                "SELECT to_regclass('public.chunks') IS NOT NULL"
+            ).fetchone()[0]
+            if already:
+                return
+
+            sql = SCHEMA_PATH.read_text(encoding="utf-8")
+            if dim != 384:
+                sql = sql.replace("vector(384)", f"vector({dim})")
             conn.execute(sql)
             conn.commit()
 
@@ -129,8 +146,15 @@ class PgVectorStore:
         return row is not None
 
     def count(self) -> int:
+        """How many clauses are indexed, for /health.
+
+        Not `COUNT(*)`: the serving role sees no rows without a principal, so a
+        plain count would report 0 on a perfectly healthy service. The schema
+        exposes a SECURITY DEFINER function instead, which can return the
+        number without exposing a single row.
+        """
         with self._pool.connection() as conn:
-            return int(conn.execute("SELECT COUNT(*) FROM chunks").fetchone()[0])
+            return int(conn.execute("SELECT chunks_indexed()").fetchone()[0])
 
     def clear(self) -> None:
         with self._pool.connection() as conn:

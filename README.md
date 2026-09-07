@@ -37,7 +37,7 @@ external dependency has a built-in fallback (see
 
 ```bash
 make install     # venv + runtime and dev dependencies
-make test        # 91 tests
+make test        # 96 tests (5 skip without a Postgres to run against)
 make eval        # score the system against the labelled set
 make run         # API on http://localhost:8000
 ```
@@ -209,7 +209,7 @@ app/
   main.py      FastAPI surface
 eval/          harness + metrics (retrieval scored apart from decisions)
 data/          8 contracts, 18 invoices, labels.json, access.json
-tests/         91 tests
+tests/         96 tests; test_rls_pg.py needs a live Postgres and skips otherwise
 deploy/        Helm chart, Terraform
 ```
 
@@ -238,6 +238,7 @@ Written as a portfolio project, so the honest boundaries:
 - **Terraform has never been applied.** It shows the shape of the deployment,
   not operations experience.
 
-If you are reading this to understand the design rather than to run it,
-[`LEARNING.md`](LEARNING.md) is the walkthrough: what each decision was between,
-what broke, and the questions worth being able to answer about it.
+If you are reading this to understand the design rather than to run it, the
+module docstrings are the walkthrough — each one states what the decision was
+between and why it went the way it did. `app/core/check.py`, `app/core/interpret.py`
+and `app/store/schema_pg.sql` carry most of it.
